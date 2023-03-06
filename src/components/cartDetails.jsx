@@ -6,7 +6,7 @@ import { HiLink } from "react-icons/hi";
 import { CgCalendarDates } from "react-icons/cg";
 import moment from "moment";
 
-const CardDetails = ({ clientData, data, id }) => {
+const CartDetails = ({ clientData, data, id }) => {
   const [selectedFiles, setSelectedFiles] = React.useState([]);
 
   // <-- Modal function Code -->
@@ -142,4 +142,4 @@ const CardDetails = ({ clientData, data, id }) => {
   );
 };
 
-export default CardDetails;
+export default CartDetails;
