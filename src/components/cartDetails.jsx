@@ -8,6 +8,7 @@ import moment from "moment";
 
 const CartDetails = ({ data }) => {
   const [showFile, setShowFile] = React.useState(false);
+  const [showFullDescription, setShowFullDescription] = React.useState(false);
 
   // <-- Modal function Code -->
   React.useEffect(() => {
@@ -81,11 +82,23 @@ const CartDetails = ({ data }) => {
         {/* <-- Description-- > */}
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-1">
-            <DiRedis className=" w-6 h-6 object-cover flex justify-center items-center rounded-full" />
-            <h2 className="text-sm">{data?.description.slice(0, 28)}</h2>
+            <div className="px-1 flex justify-center items-center rounded-lg">
+              <DiRedis className="text-xl" />
+            </div>
+            <p className="text-sm">
+              {showFullDescription
+                ? data?.description
+                : `${data?.description.substring(0, 20)}...`}{" "}
+              <button
+                onClick={() => setShowFullDescription(!showFullDescription)}
+                className="text-red-300 text-sm"
+              >
+                {!showFullDescription ? "See More" : "Less"}
+              </button>
+            </p>
           </div>
           <div className="px-2 flex justify-center items-center rounded-lg bg-gray-300">
-            <FaClipboardList className="text-gray-500" />
+            <FaClipboardList className="text-gray-500 " />
             <h1>1/2</h1>
           </div>
         </div>
