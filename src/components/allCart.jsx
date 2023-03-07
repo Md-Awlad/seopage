@@ -27,9 +27,10 @@ const AllCart = () => {
               </div>
             </div>
             {/* <-- Details --> */}
-            {clientData.map((data, index) => (
-              <CartDetails data={data} key={index} />
-            ))}
+            {clientData.map((data, index) => {
+              let data2 = { ...data, id: data.id + 13874983787656 };
+              return <CartDetails data={data2} key={index} />;
+            })}
           </div>
         </div>
         {/* <-- TODO --> */}
@@ -45,9 +46,10 @@ const AllCart = () => {
               </div>
             </div>
             {/* <-- Details --> */}
-            {clientData.map((data, index) => (
-              <CartDetails data={data} key={index} />
-            ))}
+            {clientData.map((data, index) => {
+              let data2 = { ...data, id: data.id + 13874922483 };
+              return <CartDetails data={data2} key={index} />;
+            })}
           </div>
         </div>
         {/* <-- Doing --> */}
@@ -63,9 +65,10 @@ const AllCart = () => {
               </div>
             </div>
             {/* <-- Details --> */}
-            {clientData.map((data, index) => (
-              <CartDetails data={data} key={index} />
-            ))}
+            {clientData.map((data, index) => {
+              let data2 = { ...data, id: data.id + 1387499983 };
+              return <CartDetails data={data2} key={index} />;
+            })}
           </div>
         </div>
         {/* <-- Review --> */}
@@ -81,9 +84,10 @@ const AllCart = () => {
               </div>
             </div>
             {/* <-- Details --> */}
-            {clientData.map((data, index) => (
-              <CartDetails data={data} key={index} />
-            ))}
+            {clientData.map((data, index) => {
+              let data2 = { ...data, id: data.id + 13889774983 };
+              return <CartDetails data={data2} key={index} />;
+            })}
           </div>
         </div>
         {/* <-- Complete --> */}
@@ -99,9 +103,10 @@ const AllCart = () => {
               </div>
             </div>
             {/* <-- Details --> */}
-            {clientData.map((data, index) => (
-              <CartDetails data={data} key={index} />
-            ))}
+            {clientData.map((data, index) => {
+              let data2 = { ...data, id: data.id + 1354674983 };
+              return <CartDetails data={data2} key={index} />;
+            })}
           </div>
         </div>
         {/* <-- Overd --> */}
@@ -117,9 +122,10 @@ const AllCart = () => {
               </div>
             </div>
             {/* <-- Details --> */}
-            {clientData.map((data, index) => (
-              <CartDetails data={data} key={index} />
-            ))}
+            {clientData.map((data, index) => {
+              let data2 = { ...data, id: data.id + 13874983 };
+              return <CartDetails data={data2} key={index} />;
+            })}
           </div>
         </div>
       </div>

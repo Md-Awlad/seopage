@@ -6,27 +6,27 @@ import { HiLink } from "react-icons/hi";
 import { CgCalendarDates } from "react-icons/cg";
 import moment from "moment";
 
-const CartDetails = ({ clientData, data, id }) => {
+const CartDetails = ({ data }) => {
   const [selectedFiles, setSelectedFiles] = React.useState([]);
+  const [showFile, setShowFile] = React.useState(false);
 
   // <-- Modal function Code -->
-  React.useEffect((id) => {
-    const openModalBtn = document.getElementById(`open-modal-btn-${id}`);
-    const closeModalBtn = document.getElementById(`close-modal-btn-${id}`);
-    const modal = document.getElementById(`modal-${id}`);
+  React.useEffect(() => {
+    const openModalBtn = document.getElementById(`open-modal-btn-${data.id}`);
+    const closeModalBtn = document.getElementById(`close-modal-btn-${data.id}`);
+    const modal = document.getElementById(`modal-${data.id}`);
 
     const handleOpenModal = (e) => {
       e.preventDefault();
       modal.style.display = "block";
-      openModalBtn.id = `open-modal-btn-${id}`;
+      openModalBtn.id = `open-modal-btn-${data.id}`;
     };
 
     const handleCloseModal = (e) => {
       e.preventDefault();
       modal.style.display = "none";
-      openModalBtn.id = `close-modal-btn-${id}`;
+      openModalBtn.id = `close-modal-btn-${data.id}`;
     };
-
     openModalBtn.addEventListener("click", handleOpenModal);
     closeModalBtn.addEventListener("click", handleCloseModal);
 
@@ -34,21 +34,21 @@ const CartDetails = ({ clientData, data, id }) => {
       openModalBtn.removeEventListener("click", handleOpenModal);
       closeModalBtn.removeEventListener("click", handleCloseModal);
     };
-  }, []);
+  }, [data.id]);
 
   // <-- submit -->
   const handleSubmit = (e) => {
     e.preventDefault();
-    const fileInput = document.getElementById(`fileName-${id}`);
+    const fileInput = document.getElementById(`fileName-${data.id}`);
     const files = Array.from(fileInput.files);
     setSelectedFiles(files.map((file) => file.name));
-    const modal = document.getElementById(`modal-${id}`);
+    const modal = document.getElementById(`modal-${data.id}`);
     modal.style.display = "none";
   };
 
   return (
     <>
-      <div className="bg-white p-2 rounded-sm space-y-3">
+      <div className="bg-white p-2 rounded-sm space-y-3 shadow-sm">
         {/* <-- Client --> */}
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-1">
@@ -98,25 +98,41 @@ const CartDetails = ({ clientData, data, id }) => {
             <TbMessages className="text-gray-500 text-lg" />
             <h1>1/2</h1>
           </div>
+          {/* <-- Action Button --> */}
           <div className="px-2 flex justify-center items-center rounded-lg ">
             <HiLink
-              id={`open-modal-btn-${id}`}
+              id={`open-modal-btn-${data.id}`}
               className="text-gray-500 text-lg cursor-pointer"
             />
-            <h1>{selectedFiles?.length || 25}</h1>
+            <h1
+              className="text-lg px-1 cursor-pointer"
+              onClick={() => setShowFile(!showFile)}
+            >
+              {selectedFiles?.length || 0}
+            </h1>
           </div>
           <div className="px-2 flex justify-center items-center rounded-lg ">
             <CgCalendarDates className="text-gray-500 text-lg" />
             <h2 className="text-sm">{moment().format("L")}</h2>
           </div>
         </div>
+        {showFile && selectedFiles.length > 0 && (
+          <h2>
+            Upload All files:<p> {selectedFiles.join(", ")}</p>
+          </h2>
+        )}
       </div>
-      <div id={`modal-${id}`} style={{ display: "none" }}>
+      {/* <-- Modal --> */}
+      <div
+        id={`modal-${data.id}`}
+        style={{ display: "none" }}
+        className="shadow-2xl p-2"
+      >
         <form onSubmit={handleSubmit} className="space-y-2">
           <label className="text-red-800">
             Please Select your Attachment File
           </label>
-          <input type="file" id={`fileName-${id}`} multiple />
+          <input type="file" id={`fileName-${data.id}`} multiple />
           <div className="flex justify-end items-center gap-3">
             <button
               type="submit"
@@ -125,18 +141,13 @@ const CartDetails = ({ clientData, data, id }) => {
               Submit
             </button>
             <button
-              id={`close-modal-btn-${id}`}
+              id={`close-modal-btn-${data.id}`}
               className="w-20 text-center py-1 bg-red-700 rounded-lg text-lg text-white"
             >
               close
             </button>
           </div>
         </form>
-        {selectedFiles.length > 0 && (
-          <h2>
-            Upload All files:<p> {selectedFiles.join(", ")}</p>
-          </h2>
-        )}
       </div>
     </>
   );
