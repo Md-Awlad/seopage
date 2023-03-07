@@ -7,7 +7,6 @@ import { CgCalendarDates } from "react-icons/cg";
 import moment from "moment";
 
 const CartDetails = ({ data }) => {
-  const [selectedFiles, setSelectedFiles] = React.useState([]);
   const [showFile, setShowFile] = React.useState(false);
 
   // <-- Modal function Code -->
@@ -41,10 +40,21 @@ const CartDetails = ({ data }) => {
     e.preventDefault();
     const fileInput = document.getElementById(`fileName-${data.id}`);
     const files = Array.from(fileInput.files);
-    setSelectedFiles(files.map((file) => file.name));
+
+    // All file save to localStorage
+    localStorage.setItem(
+      `saveFiles-${data?.id}`,
+      JSON.stringify(files.map((file) => file.name))
+    );
+
+    window.location.reload();
+
     const modal = document.getElementById(`modal-${data.id}`);
     modal.style.display = "none";
   };
+
+  // Get Storage Data
+  const storedFiles = JSON.parse(localStorage.getItem(`saveFiles-${data?.id}`));
 
   return (
     <>
@@ -108,7 +118,7 @@ const CartDetails = ({ data }) => {
               className="text-lg px-1 cursor-pointer"
               onClick={() => setShowFile(!showFile)}
             >
-              {selectedFiles?.length || 0}
+              {storedFiles?.length || 0}
             </h1>
           </div>
           <div className="px-2 flex justify-center items-center rounded-lg ">
@@ -116,9 +126,9 @@ const CartDetails = ({ data }) => {
             <h2 className="text-sm">{moment().format("L")}</h2>
           </div>
         </div>
-        {showFile && selectedFiles.length > 0 && (
+        {showFile && storedFiles.length > 0 && (
           <h2>
-            Upload All files:<p> {selectedFiles.join(", ")}</p>
+            Upload All files:<p> {storedFiles.join(", ")}</p>
           </h2>
         )}
       </div>
