@@ -5,6 +5,7 @@ import { TbMessages } from "react-icons/tb";
 import { HiLink } from "react-icons/hi";
 import { CgCalendarDates } from "react-icons/cg";
 import moment from "moment";
+import axios from "axios";
 
 const CartDetails = ({ data }) => {
   const [showFile, setShowFile] = React.useState(false);
@@ -47,7 +48,6 @@ const CartDetails = ({ data }) => {
       `saveFiles-${data?.id}`,
       JSON.stringify(files.map((file) => file.name))
     );
-
     window.location.reload();
 
     const modal = document.getElementById(`modal-${data.id}`);
@@ -177,3 +177,36 @@ const CartDetails = ({ data }) => {
 };
 
 export default CartDetails;
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  axios.post(
+    "http:localhost:8000/files",
+    {
+      image: "files",
+      photo: document.querySelector("#fileInput").files,
+    },
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+};
+
+<form onSubmit={handleSubmit} className="space-y-2">
+  <label className="text-red-800">Please Select your Attachment File</label>
+  <input type="file" id={"files"} multiple />
+  <div className="flex justify-end items-center gap-3">
+    <button
+      type="submit"
+      className="w-20 text-center py-1 bg-cyan-600 rounded-lg text-lg text-white"
+    >
+      Submit
+    </button>
+    <button className="w-20 text-center py-1 bg-red-700 rounded-lg text-lg text-white">
+      close
+    </button>
+  </div>
+</form>;
