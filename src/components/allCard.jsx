@@ -1,7 +1,7 @@
 import React from "react";
-import CartDetails from "./cartDetails";
+import CardDetails from "./cardDetails";
 
-const AllCart = () => {
+const AllCard = () => {
   const [clientData, setClientData] = React.useState([]);
 
   // <-- Fetching Data -->
@@ -29,7 +29,7 @@ const AllCart = () => {
             {/* <-- Details --> */}
             {clientData.map((data, index) => {
               let data2 = { ...data, id: data.id + 13874983787656 };
-              return <CartDetails data={data2} key={index} />;
+              return <CardDetails data={data2} key={index} />;
             })}
           </div>
         </div>
@@ -48,7 +48,7 @@ const AllCart = () => {
             {/* <-- Details --> */}
             {clientData.map((data, index) => {
               let data2 = { ...data, id: data.id + 13874922483 };
-              return <CartDetails data={data2} key={index} />;
+              return <CardDetails data={data2} key={index} />;
             })}
           </div>
         </div>
@@ -67,7 +67,7 @@ const AllCart = () => {
             {/* <-- Details --> */}
             {clientData.map((data, index) => {
               let data2 = { ...data, id: data.id + 1387499983 };
-              return <CartDetails data={data2} key={index} />;
+              return <CardDetails data={data2} key={index} />;
             })}
           </div>
         </div>
@@ -86,7 +86,7 @@ const AllCart = () => {
             {/* <-- Details --> */}
             {clientData.map((data, index) => {
               let data2 = { ...data, id: data.id + 13889774983 };
-              return <CartDetails data={data2} key={index} />;
+              return <CardDetails data={data2} key={index} />;
             })}
           </div>
         </div>
@@ -105,7 +105,7 @@ const AllCart = () => {
             {/* <-- Details --> */}
             {clientData.map((data, index) => {
               let data2 = { ...data, id: data.id + 1354674983 };
-              return <CartDetails data={data2} key={index} />;
+              return <CardDetails data={data2} key={index} />;
             })}
           </div>
         </div>
@@ -124,7 +124,7 @@ const AllCart = () => {
             {/* <-- Details --> */}
             {clientData.map((data, index) => {
               let data2 = { ...data, id: data.id + 13874983 };
-              return <CartDetails data={data2} key={index} />;
+              return <CardDetails data={data2} key={index} />;
             })}
           </div>
         </div>
@@ -133,4 +133,4 @@ const AllCart = () => {
   );
 };
 
-export default AllCart;
+export default AllCard;

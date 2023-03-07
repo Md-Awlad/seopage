@@ -7,7 +7,7 @@ import { CgCalendarDates } from "react-icons/cg";
 import moment from "moment";
 import axios from "axios";
 
-const CartDetails = ({ data }) => {
+const CardDetails = ({ data }) => {
   const [showFile, setShowFile] = React.useState(false);
   const [showFullDescription, setShowFullDescription] = React.useState(false);
 
@@ -176,7 +176,7 @@ const CartDetails = ({ data }) => {
   );
 };
 
-export default CartDetails;
+export default CardDetails;
 
 const handleSubmit = (e) => {
   e.preventDefault();
